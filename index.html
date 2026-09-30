@@ -69,7 +69,7 @@ ports.forEach(port=>{const p=project(port.x,port.y);if(p.d>25&&p.x>-80&&p.x<480)
 }
 function cloud(x,y,s){rect(x,y,34*s,8*s,'#e3f3e8');rect(x+7*s,y-7*s,20*s,9*s,'#f4faf0');rect(x+14*s,y-11*s,10*s,7*s,'#f4faf0')}
 function balloon(){const q=view/150,x=200+Math.sin(t*1.7)*1.5,y=156+q*24+(landed?0:Math.sin(t*2)*2);const landingPoint=project(ship.x,ship.y);rect(landingPoint.x-9,landingPoint.y-1,18,3,'#507b6550');
-const bounds=c.getBoundingClientRect(),shapeY=(bounds.width/bounds.height)/(16/9),keel=(9+Math.round((1-q)*6)+12)*.5;g.save();g.translate(Math.round(x),Math.round(y)+keel*(1-shapeY));g.scale(.5,.5*shapeY);
+const bounds=c.getBoundingClientRect(),deviceWidth=Math.min(Math.max(window.screen?.width||window.innerWidth,window.screen?.height||window.innerHeight),960),shapeX=deviceWidth/bounds.width,shapeY=(deviceWidth/(16/9))/bounds.height,keel=(9+Math.round((1-q)*6)+12)*.5;g.save();g.translate(Math.round(x),Math.round(y)+keel*(1-shapeY));g.scale(.5*shapeX,.5*shapeY);
 // Round hot-air balloon with stepped pixel edges and cloth panels.
 for(let row=0;row<56;row+=2){const v=(row-27)/28;const half=Math.round(row<16?Math.sqrt(Math.max(0,1-Math.pow((row-16)/17,2)))*29:row<28?29-(row-16)*.12:27.5-(row-28)*.7);if(half<2)continue;const by=-65+row;rect(-half-1,by,half*2+2,2,'#946d83');rect(-half,by,half*2,2,'#e6b0c5');const cream=Math.max(2,Math.round(half*.28));rect(-cream,by,cream*2,2,'#fff0ca');if(half>12){rect(-Math.round(half*.73),by,3,2,'#ca91b1');rect(Math.round(half*.65),by,3,2,'#ca91b1')}if(row<24&&half>14)rect(-half+4,by,3,2,'#f9d4df')}
 rect(-7,-12,14,5,'#b8945d');rect(-5,-7,10,3,'#dfc18b');
